@@ -91,11 +91,13 @@ function updateData($data){
     $npm    =htmlspecialchars($_POST['npm']);
 
     $query = "UPDATE mahasiswa SET 
-                nama = $nama,
-                alamat = $alamat,
-                npm = $npm ";
+                nama = '$nama',
+                alamat = '$alamat'
+              ";
+
     $conn->exec($query);
   } catch(PDOException $e) {
+    echo $e;
     return 0;
   }
   return 1;

@@ -1,6 +1,11 @@
 <?php 
 require 'function.php';
+if (isset($_GET["npm"])){
+  $npm = $_GET["npm"];
 
+  $sql = "SELECT * FROM mahasiswa WHERE npm = $npm";
+  $row = $conn->query($sql)->fetch(PDO::FETCH_ASSOC);
+}
 if(isset($_POST["submit"])){
 // cek apakah data berhasil di tambahkan atau tidak
   if( addData($_POST) > 0 ) {
@@ -50,15 +55,15 @@ tr:nth-child(even) {
 
 <h2>Data Mahasiswa</h2>
 
-<form action="" method="POST">
-  <label for="npm">Npm</label>
-  <input type="text" id="npm" name="npm">
-  <label for="nama">Nama</label>
-  <input type="text" id="nama" name="nama">
-  <label for="alamat">Alamat</label>
-  <input type="text" id="alamat" name="alamat">
-  <button type="submit" name="submit">Tambah Data</button>
-</form>
+  <form action="" method="POST">
+    <label for="npm">Npm</label>
+    <input type="text" id="npm" name="npm" value="<?= (isset($row)) ? $row['npm'] : ''; ?>" readonly>
+    <label for="nama">Nama</label>
+    <input type="text" id="nama" name="nama" value="<?= $row['nama'] ?>">
+    <label for="alamat">Alamat</label>
+    <input type="text" id="alamat" name="alamat" value="<?= $row['alamat'] ?>">
+    <button type="submit" name="submit">Update Data</button>
+  </form>
 <br>
 
 <table>
@@ -78,7 +83,7 @@ tr:nth-child(even) {
 		<td><?= $mhs["alamat"]; ?></td>
     <td>
         <button><a href="hapus.php?npm=<?= $mhs["npm"]; ?>" onclick="return confirm('yakin?');">Hapus</a></button>
-        <button><a href="ubah.php?npm=<?= $mhs["npm"]; ?>">Ubah</a></button>
+        <button><a href="index.php?npm=<?= $mhs["npm"]; ?>">Ubah</a></button>
     </td>
 	</tr>
 	<?php $i++; ?>

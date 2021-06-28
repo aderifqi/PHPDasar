@@ -24,8 +24,6 @@ if( isset($_POST["submit"]) ) {
 			</script>
 		";
 	}
-
-
 }
 ?>
 <!DOCTYPE html>
@@ -38,12 +36,12 @@ if( isset($_POST["submit"]) ) {
   <h3>Ubah Data</h3>
   <form action="" method="POST">
     <label for="npm">Npm</label>
-    <input type="text" id="npm" name="npm" value="<?= $row['npm'] ?>">
+    <input type="text" id="npm" name="npm" value="<?= $row['npm'] ?>" readonly>
     <label for="nama">Nama</label>
     <input type="text" id="nama" name="nama" value="<?= $row['nama'] ?>">
     <label for="alamat">Alamat</label>
     <input type="text" id="alamat" name="alamat" value="<?= $row['alamat'] ?>">
-    <button type="submit" name="submit">Tambah Data</button>
+    <button type="submit" name="submit">Update Data</button>
   </form>
 </body>
 </html>
