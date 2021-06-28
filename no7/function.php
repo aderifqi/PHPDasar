@@ -83,7 +83,7 @@ function delete($npm){
 
 // Updata Data
 
-function addData($data){
+function updateData($data){
   global $conn;
   try{
     $nama   =htmlspecialchars($_POST['nama']);
