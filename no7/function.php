@@ -80,6 +80,27 @@ function delete($npm){
   }
   return 1;
 }
+
+// Updata Data
+
+function addData($data){
+  global $conn;
+  try{
+    $nama   =htmlspecialchars($_POST['nama']);
+    $alamat =htmlspecialchars($_POST['alamat']);
+    $npm    =htmlspecialchars($_POST['npm']);
+
+    $query = "UPDATE mahasiswa SET 
+                nama = $nama,
+                alamat = $alamat,
+                npm = $npm ";
+    $conn->exec($query);
+  } catch(PDOException $e) {
+    return 0;
+  }
+  return 1;
+}
+
 ?> 
 
 
